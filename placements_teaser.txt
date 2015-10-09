@@ -1,0 +1,36 @@
+Given a set of line-items that represent financial information about an ad run how would you go about writing a web-app that 
+allows users to adjust the billing data and generate an invoice?  
+
+For each line item, you'll be given the following fields:
+
+"id": The id of the line_item
+"campaign_id":    The id of the campaign that the line_item belongs to 
+"campaign_name":  The name of the campaign referenced by the campaign_id
+"line_item_name": The human readable name of the line item
+"booked_amount":  The amount the line item was booked for
+"actual_amount":  The actual value of the impressions that this line item delivered for
+"adjustments":    Any adjustments to be made to the bill for this line item, as either a positive or negative dollar amount
+    
+Please see the attached file for the line-item data.
+
+Below is a list of some expected behaviors and use cases
+Don't worry, we know there's a lot here! Just pick 3-5 that you're most interested in coding. 
+
+* The user should be able browse through the line-item data as either a list or table (ie. pagination or infinite-scrolling).
+* The user should be able to edit line-item "adjustments".
+* The user should be able to see each line-item's billable amount (sub-total = actuals + adjustments).
+* The user should be able to see sub-totals grouped by campaign (line-items grouped by their parent campaign).
+* The user should be able to see the invoice grand-total (sum of each line-item's billable amount).
+* The user should be able to filter the data (ie. by campaign name, etc., should affect the grand-total).
+* The user should be able flag individual line-items as "reviewed" (meaning they are disabled from further editing).
+* The user should be able flag "campaigns" as being reviewed, as well.
+* The user should be able to sort by columns
+
+Please respond with a link to your work in your repository of choice or as compressed archive.  Please include a brief statement as to which parts you chose to implement and why they interested you, and/or your thought process on any design decisions vs. trade-offs that you had to make.
+
+Your submission will be evaluated on the following criteria:
+* We can easily build and run your web-app because you documented how to do so!
+* The web-app satisfies one or more of the stated use-cases/expected-behaviors.
+* The UX is smooth.
+* The underlying javaScript/CSS/HTML is production quality easy to understand.
+* (Bonus Points) You wrote specs AND you documented how to run them against your work!
