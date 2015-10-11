@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html ng-app="lineitems">
+
+<head>
+    <title>Ad Biznis</title>
+	<meta charset="UTF-8">
+	<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/0.10.1/angular-material.min.css">
+	 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	 <link href="styles/app.css" rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div class="container" ng-controller="ListCntrl">
+		<div class="page-header">
+		  <h1>Line Items Invoice
+			  <small>{{ numLineItems }} Items Total Billed: {{ totalBillable }}</small></h1>
+		</div>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+				<th>
+					<a href="#" ng-click="setSort('line_item_name')">
+						Name <i ng-show="sortType=='line_item_name'"  							ng-class="{'glyphicon-triangle-top':sortRev, 							'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
+					</a>
+				</th>
+				<th>
+					<a href="#" 
+					   ng-click="setSort('booked_amount')">
+						Booked
+						 <i ng-show="sortType=='booked_amount'"             		                    ng-class="{'glyphicon-triangle-top':sortRev, 							'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
+					</a>
+				</th>
+				<th>
+					<a href="#"
+				   	ng-click="setSort('actual_amount')">
+					Actual
+					<i ng-show="sortType=='actual_amount'" 						ng-class="{'glyphicon-triangle-top':sortRev, 						'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
+					</a>
+				</th>
+				<th>
+					<a href="#"
+					   ng-click="setSort('billable')">
+						Billed
+						<i ng-show="sortType=='billable'" 						ng-class="{'glyphicon-triangle-top':sortRev, 						'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
+					</a>
+				</th>
+				<th></th>
+			    </tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="lineItem in lineItems | orderBy:sortType:sortRev | startFrom:currentPage*pageSize | limitTo:pageSize">
+					<td>{{lineItem.line_item_name}}</td>
+					<td>{{lineItem.booked_amount}}</td>
+					<td>{{lineItem.actual_amount}} 
+						<div class="adjustments" ng-class="{'negative':lineItem.adjustments < 0, 'positive': lineItem.adjustments > 0}">
+							{{lineItem.adjustments}}
+						</div></td>
+					<td>{{lineItem.billable}}</td>
+					<td>
+						<button>
+							<i class="glyphicon glyphicon-edit"></i>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<nav>
+		  <ul class="pagination">
+		    <li>
+		      <a ng-href="#" aria-label="Previous" ng-click="prevPage()">
+				<i class="glyphicon glyphicon-menu-left"></i>
+		        Previous
+		      </a>
+		    </li>
+		    <li><a href="#" class="disabled"><strong>{{ currentPage + 1 }}</strong> / {{ numPages }} </a></li>
+
+		    <li>
+		      <a ng-href="#" aria-label="Next" ng-click="nextPage()">
+		        Next
+				<i class="glyphicon glyphicon-menu-right"></i>
+		      </a>
+		    </li>
+		  </ul>
+		</nav>
+	    <div ng-view></div>
+	</div>
+	<div id="loading"></div>
+	
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-aria.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js"></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+</body>
+
+</html>

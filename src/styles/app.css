@@ -1,0 +1,14 @@
+.adjustments {
+	font-size:.8em;
+	opacity: 0;
+	transition: all 300ms ease;
+}
+.table-hover > tbody > tr:hover .adjustments {
+	opacity: 1;
+}
+.negative {
+	color:#F00;
+}
+.positive {
+	color:#3c763d;
+}
