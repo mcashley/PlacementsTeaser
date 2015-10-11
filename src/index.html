@@ -14,8 +14,8 @@
 <body>
 	<div class="container" ng-controller="ListCntrl">
 		<div class="page-header">
-		  <h1>Line Items Invoice
-			  <br><small>{{ numLineItems }} Items Total Billed: {{ totalBillable | currency }}</small></h1>
+		  <h1>Invoice <small>{{ numLineItems }} Line Items</small>
+			  <small class="total">Total Billed: {{ totalBillable | currency }}</small></h1>
 		</div>
 		
 		<table class="table table-hover">

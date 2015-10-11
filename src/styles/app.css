@@ -1,3 +1,11 @@
+h1 {
+	position:relative;
+}
+.total {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
 .adjustments {
 	font-size:.8em;
 	opacity: 0;
