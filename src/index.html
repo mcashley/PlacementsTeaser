@@ -15,7 +15,7 @@
 	<div class="container" ng-controller="ListCntrl">
 		<div class="page-header">
 		  <h1>Line Items Invoice
-			  <small>{{ numLineItems }} Items Total Billed: {{ totalBillable }}</small></h1>
+			  <br><small>{{ numLineItems }} Items Total Billed: {{ totalBillable | currency }}</small></h1>
 		</div>
 		<table class="table table-hover">
 			<thead>
@@ -32,13 +32,7 @@
 						 <i ng-show="sortType=='booked_amount'"             		                    ng-class="{'glyphicon-triangle-top':sortRev, 							'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
 					</a>
 				</th>
-				<th>
-					<a href="#"
-				   	ng-click="setSort('actual_amount')">
-					Actual
-					<i ng-show="sortType=='actual_amount'" 						ng-class="{'glyphicon-triangle-top':sortRev, 						'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
-					</a>
-				</th>
+				
 				<th>
 					<a href="#"
 					   ng-click="setSort('billable')">
@@ -51,17 +45,19 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="lineItem in lineItems | orderBy:sortType:sortRev | startFrom:currentPage*pageSize | limitTo:pageSize">
-					<td>{{lineItem.line_item_name}}</td>
-					<td>{{lineItem.booked_amount}}</td>
-					<td>{{lineItem.actual_amount}} 
-						<div class="adjustments" ng-class="{'negative':lineItem.adjustments < 0, 'positive': lineItem.adjustments > 0}">
-							{{lineItem.adjustments}}
-						</div></td>
-					<td>{{lineItem.billable}}</td>
-					<td>
-						<button>
-							<i class="glyphicon glyphicon-edit"></i>
-						</button>
+					<td>{{lineItem.line_item_name}}
+						<br /><small>{{lineItem.campaign_name}}</small>
+					</td>
+					<td>{{lineItem.booked_amount | currency}}</td>
+					
+					<td style="width:200px;">
+						{{lineItem.billable | currency}}
+						<div class="adjustments" ng-show="lineItem.adjustments != 0">
+							{{lineItem.actual_amount | currency}}
+						<span ng-class="{'negative':lineItem.adjustments < 0, 'positive': lineItem.adjustments > 0}">
+							{{lineItem.adjustments | currency}}
+						</span>
+					</div>
 					</td>
 				</tr>
 			</tbody>

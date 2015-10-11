@@ -12,3 +12,6 @@
 .positive {
 	color:#3c763d;
 }
+.positive:before {
+	content:"+ ";
+}

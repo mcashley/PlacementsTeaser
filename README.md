@@ -2,8 +2,9 @@
 
 ## Running 
 
-Download / Clone 
-Start a web server
+* Download / Clone 
+* Start a web server
+* Navigate to src directory in a browser
 
 
 ##Use cases tackled
@@ -14,3 +15,10 @@ Start a web server
   * Billable amount actually seems more important than actual, booked, or adjustments
 3. The user should be able to see the invoice grand-total (sum of each line-item's billable amount).
   * It's supposed to be an invoice so a grand total is pretty important.
+4. The user should be able to sort by columns
+  * There is a lot of data here, so incorporating ways to find data
+
+##Notes
+
+* All numeric values are displayed as currency, that is what I understood the numbers to represent
+* I thought that booked and billed were the two most important values for each line item, so I made those stand out. Since adjustments and actual were factors in billed, I added those as information the user got after interacting with a line item, hovering here, so it is not mobile friendly, would need to be shown in a touch environment or visible on tap. Also, if there is no adjustment, then billable equals actual so no extra info is shown.
