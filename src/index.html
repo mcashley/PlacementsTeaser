@@ -14,55 +14,69 @@
 <body>
 	<div class="container" ng-controller="ListCntrl">
 		<div class="page-header">
-		  <h1>Invoice <small>{{ numLineItems }} Line Items</small>
+		  <h1>Invoice <small>{{ lineItems.length }} Line Items</small>
 			  <small class="total">Total Billed: {{ totalBillable | currency }}</small></h1>
 		</div>
-		
-		<table class="table table-hover">
-			<thead>
-				<tr>
-				<th>
-					<a href="#" ng-click="setSort('line_item_name')">
-						Name <i ng-show="sortType=='line_item_name'"  							ng-class="{'glyphicon-triangle-top':sortRev, 							'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
-					</a>
-				</th>
-				<th>
-					<a href="#" 
-					   ng-click="setSort('booked_amount')">
-						Booked
-						 <i ng-show="sortType=='booked_amount'"             		                    ng-class="{'glyphicon-triangle-top':sortRev, 							'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
-					</a>
-				</th>
+
+		<div class="panel panel-default">
+		  <!-- Default panel contents -->
+		  <div class="panel-heading">
+			  <label>Filter by Campaign</label>
+			  <input type="text" ng-model="selected" uib-typeahead="campaign for campaign in campaignsList | filter:$viewValue | limitTo:8" typeahead-on-select="filterSelect($item)" class="form-control" />
+			  <button ng-click="filterSelect('')">Clear</button>
+			  <div class="campaign-data">{{filtered.length}} items
+				  <br>
+			  	  <span ng-show="selected != ''">
+					  Campaign total: {{ filteredTotal | currency }}
+				  </span>
+		      </div>
+		  </div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+					<th>
+						<a href="#" ng-click="setSort('line_item_name')">
+							Name <i ng-show="sortType=='line_item_name'"  							ng-class="{'glyphicon-triangle-top':sortRev, 							'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
+						</a>
+					</th>
+					<th>
+						<a href="#" 
+						   ng-click="setSort('booked_amount')">
+							Booked
+							 <i ng-show="sortType=='booked_amount'"             		                    ng-class="{'glyphicon-triangle-top':sortRev, 							'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
+						</a>
+					</th>
 				
-				<th>
-					<a href="#"
-					   ng-click="setSort('billable')">
-						Billed
-						<i ng-show="sortType=='billable'" 						ng-class="{'glyphicon-triangle-top':sortRev, 						'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
-					</a>
-				</th>
-				<th></th>
-			    </tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="lineItem in lineItems | orderBy:sortType:sortRev | startFrom:currentPage*pageSize | limitTo:pageSize">
-					<td>{{lineItem.line_item_name}}
-						<br /><small>{{lineItem.campaign_name}}</small>
-					</td>
-					<td>{{lineItem.booked_amount | currency}}</td>
+					<th>
+						<a href="#"
+						   ng-click="setSort('billable')">
+							Billed
+							<i ng-show="sortType=='billable'" 						ng-class="{'glyphicon-triangle-top':sortRev, 						'glyphicon-triangle-bottom':!sortRev}"         		                    			class="glyphicon"></i>
+						</a>
+					</th>
+					<th></th>
+				    </tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="lineItem in filtered   |orderBy:sortType:sortRev | startFrom:currentPage*pageSize | limitTo:pageSize">
+						<td>{{lineItem.line_item_name}}
+							<br /><small>{{lineItem.campaign_name}}</small>
+						</td>
+						<td>{{lineItem.booked_amount | currency}}</td>
 					
-					<td style="width:200px;">
-						{{lineItem.billable | currency}}
-						<div class="adjustments" ng-show="lineItem.adjustments != 0">
-							{{lineItem.actual_amount | currency}}
-						<span ng-class="{'negative':lineItem.adjustments < 0, 'positive': lineItem.adjustments > 0}">
-							{{lineItem.adjustments | currency}}
-						</span>
-					</div>
-					</td>
-				</tr>
-			</tbody>
-		</table>
+						<td style="width:200px;">
+							{{lineItem.billable | currency}}
+							<div class="adjustments" ng-show="lineItem.adjustments != 0">
+								{{lineItem.actual_amount | currency}}
+							<span ng-class="{'negative':lineItem.adjustments < 0, 'positive': lineItem.adjustments > 0}">
+								{{lineItem.adjustments | currency}}
+							</span>
+						</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 		<nav>
 		  <ul class="pagination">
 		    <li>
@@ -89,6 +103,7 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-aria.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-touch.js"></script>
+	<script type="text/javascript" src="js/libs/ui-bootstrap-tpls-0.14.0.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 </body>
 

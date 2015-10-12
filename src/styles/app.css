@@ -1,3 +1,4 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
 h1 {
 	position:relative;
 }
@@ -5,6 +6,21 @@ h1 {
     position: absolute;
     bottom: 0;
     right: 0;
+}
+.panel-heading .form-control {
+	width:60%;
+	display:inline-block;
+}
+.panel-heading label {
+	display:block;
+}
+.panel-heading button {
+	width:70px;
+	margin-left:-80px;
+	margin-right: 20px;
+}
+.campaign-data {
+	display:inline-block;
 }
 .adjustments {
 	font-size:.8em;

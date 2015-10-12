@@ -17,10 +17,12 @@
   * It's supposed to be an invoice so a grand total is pretty important.
 4. The user should be able to sort by columns
   * There is a lot of data here, so incorporating ways to find data
+ 5. The user should be able to filter the data (ie. by campaign name, etc., should affect the grand-total).
+   * Only filtering by campaign name is implemented.
 
 ##Notes
 
 * All numeric values are displayed as currency, that is what I understood the numbers to represent
 * I thought that booked and billed were the two most important values for each line item, so I made those stand out. Since adjustments and actual were factors in billed, I added those as information the user got after interacting with a line item, hovering here, so it is not mobile friendly, would need to be shown in a touch environment or visible on tap. Also, if there is no adjustment, then billable equals actual so no extra info is shown.
-* I went down the path of filtering by campaign, but realized there were 400+ campaign names so the model became more complex and I decided to abandoned, but left some commented code in.
+* I went down the path of filtering by campaign, and I realized there were 400+ campaign names so the model so I decided to make the control an auto complete box. 
 * I chose not to go into editing, flagging, adjustments, it was nicer to focus on one area.
