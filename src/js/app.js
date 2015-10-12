@@ -77,7 +77,6 @@
 				});
 			}
 			else $scope.filteredTotal = 0;
-			console.log($scope.filteredTotal);
 		};
 	}]);
 

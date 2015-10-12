@@ -4,6 +4,7 @@
 
 * Download / Clone 
 * Start a web server
+* Open Chrome
 * Navigate to src directory in a browser
 
 
