@@ -17,8 +17,8 @@
   * It's supposed to be an invoice so a grand total is pretty important.
 4. The user should be able to sort by columns
   * There is a lot of data here, so incorporating ways to find data
- 5. The user should be able to filter the data (ie. by campaign name, etc., should affect the grand-total).
-   * Only filtering by campaign name is implemented.
+5. The user should be able to filter the data (ie. by campaign name, etc., should affect the grand-total).
+  * Only filtering by campaign name is implemented.
 
 ##Notes
 
